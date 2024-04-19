@@ -7,32 +7,93 @@ class Television:
 
     def __init__(self):
 
-        pass
+        self.__status = False
+        self.__muted = False
+        self.__volume = Television.MIN_VOLUME
+        self.__channel = Television.MIN_CHANNEL
+        self.__mute_volume = Television.MIN_VOLUME
 
     def power(self):
 
-        pass
+        if self.__status:
+
+            self.__status = False
+
+        else:
+
+            self.__status = True
 
     def mute(self):
 
-        pass
+        if self.__status:
+
+            if self.__muted:
+
+                self.__muted = False
+
+            else:
+
+                self.__muted = True
+                self.__mute_volume = 0
 
     def channel_up(self):
 
-        pass
+        if self.__status:
+
+            if self.__channel == 3:
+
+                self.__channel = 0
+
+            else:
+
+                self.__channel += 1
 
     def channel_down(self):
 
-        pass
+        if self.__status:
+
+            if self.__channel == 0:
+
+                self.__channel = 3
+
+            else:
+
+                self.__channel -= 1
 
     def volume_up(self):
 
-        pass
+        self.__muted = False
+
+        if self.__status:
+
+            if self.__volume == 2:
+
+                self.__volume = 2
+
+            else:
+
+                self.__volume += 1
 
     def volume_down(self):
 
-        pass
+        self.__muted = False
+
+        if self.__status:
+
+            if self.__volume == 0:
+
+                self.__volume = 0
+
+            else:
+
+                self.__volume -= 1
 
     def __str__(self):
 
-        return f'Power = ., Channel = ., Volume = .'
+        if self.__muted:
+
+            return f'Power = {self.__status}, Channel = {self.__channel}, Volume = {self.__mute_volume}'
+
+        else:
+
+            return f'Power = {self.__status}, Channel = {self.__channel}, Volume = {self.__volume}'
